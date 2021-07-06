@@ -8,6 +8,10 @@ import {
 } from './snake.js';
 import { update as updateFood, draw as drawFood } from './food.js';
 import { outsideGrid } from './grid.js';
+import init from './init'
+import './hud';
+
+init();
 
 let lastRenderTime = 0;
 let gameOver = false;
@@ -30,7 +34,8 @@ function runCountdown() {
 }
 
 function main(currentTime) {
-  if (gameOver || countdown < 0) {
+  if (gameOver) {
+    countdown = 0;
     if (confirm('You lost. Press ok to restart.')) {
       window.location = '/';
     }
@@ -65,5 +70,6 @@ function draw() {
 }
 
 function checkDeath() {
-  gameOver = outsideGrid(getSnakeHead()) || snakeIntersection();
+  gameOver =
+    outsideGrid(getSnakeHead()) || snakeIntersection() || countdown < 0;
 }

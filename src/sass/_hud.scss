@@ -1,46 +1,114 @@
+/**
+* Utils
+*/
 .flex {
-	display: flex;
+  display: flex;
 }
 
-.game-header-row {
-	justify-content: space-between;
-	padding: 0 20px;
-	position: absolute;
-	top: 50px;
-	left: 0;
+.center-self {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 	width: 100%;
 }
 
+.center-x {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+	width: 100%;
+}
+
+.center-y {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+	width: 100%;
+}
+
+.game-header-row {
+  justify-content: space-between;
+  padding: 0 20px;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 100%;
+}
+
 .screen {
-	position: absolute;
-	left: 0;
-	top: 0;
-	right: 0;
-	height: 100%;
-	margin: 0 25px;
-	border: 1px solid blue;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 100%;
+  margin: 0 25px;
+  // border: 1px solid blue;
+  display: none;
+
+  &.active {
+    display: block;
+  }
 }
 
 .button {
-	cursor: pointer;
-	display: block;
-	outline: none;
+  cursor: pointer;
+  display: block;
+  outline: none;
 }
 
 // Intro screen
 #logo {
-	margin: auto;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%)
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 #start {
-	position: absolute;
-	bottom: 60px;
-	left: 50%;
-	transform: translateX(-50%);
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
+.text {
+  font-family: 'Lato', sans-serif;
+  font-size: 24px;
+  line-height: 32px;
+  color: #fff;
+  text-align: center;
+  padding: 0 20px;
+}
 
+.footer-buttons {
+  position: absolute;
+  bottom: -15px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.anim-sequence {
+	height: 140px;
+}
+
+.anim-sequence img {
+  width: 300px;
+
+  // we stack all image containers one above another
+  position: absolute;
+  opacity: 0;
+
+  // and place them in the middle of the screen
+  left: 50%;
+  transform: translateX(-50%);
+}

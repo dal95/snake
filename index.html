@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Snake</title>
   <link rel="preload" href="./src/fonts/DeathStar.woff2" as="font" type="font/woff2" crossorigin>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
   <script src="./src/scripts/game.js" defer type="module"></script>
 </head>
+
 <body>
   <main class="" id="game-container">
     <div id="game-header">
@@ -23,15 +28,64 @@
     <div id="game-body">
       <div id="game-board"></div>
 
-      <!-- Screens -->
-      <div class="screen" id="intro">
+      <!-- **Screens** -->
+      <!-- Intro -->
+      <div class="screen active" id="intro">
         <img src="./src/images/Logo.png" alt="" id="logo">
 
+        <img src="./src/images/buttons/snake-btn-start.png" alt="" id="start" class="button"
+          data-next="#tutorial-countdown">
+      </div>
+
+      <!-- Tutorial Countdown -->
+      <div class="screen tutorial" id="tutorial-countdown">
+        <div class="center-y">
+          <div class="text">You have 60 seconds to play the game</div>
+
+          <div class="anim-sequence">
+          </div>
+        </div>
+
+        <div class="footer-buttons">
+          <img src="./src/images/buttons/SKIP.png" alt="" class="button skip" data-next="#play-screen">
+          <img src="./src/images/buttons/NEXT.png" alt="" class="button next" data-next="#tutorial-score">
+        </div>
+      </div>
+
+      <!-- Tutorial Countdown -->
+      <div class="screen tutorial" id="tutorial-score">
+        <div class="center-y">
+          <div class="text">You have to score by touching the ring </div>
+
+          <div class="anim-sequence">
+          </div>
+        </div>
+
+        <div class="footer-buttons">
+          <img src="./src/images/buttons/SKIP.png" alt="" class="button skip" data-next="#play-screen">
+          <img src="./src/images/buttons/NEXT.png" alt="" class="button next" data-next="#tutorial-snake">
+        </div>
+      </div>
+
+      <!-- Tutorial play snake -->
+      <div class="screen tutorial" id="tutorial-snake">
+        <div class="center-y">
+          <img src="./src/images/score-table.png" alt="" class="center-self">
+
+          <div class="anim-sequence">
+          </div>
+        </div>
+
+        <div class="footer-buttons">
+          <img src="./src/images/buttons/SKIP.png" alt="" class="button skip" data-next="#play-screen">
+          <img src="./src/images/buttons/NEXT.png" alt="" class="button next" data-next="">
+        </div>
       </div>
     </div>
 
+    <!-- Frame footer -->
     <img src="./src/images/footer-blue.png" alt="" id="game-footer">
-    <img src="./src/images/buttons/snake-btn-start.png" alt="" id="start" class="button">
   </main>
 </body>
+
 </html>
