@@ -24,8 +24,8 @@ img {
 #game-board {
   justify-content: center;
   display: grid;
-  grid-template-rows: repeat(auto-fill, 12px);
-  grid-template-columns: repeat(auto-fill, 12px);
+  grid-template-rows: repeat(auto-fill, 10px);
+  grid-template-columns: repeat(auto-fill, 10px);
   height: 100%;
 }
 
@@ -59,34 +59,43 @@ img {
 
 .snake {
   background-color: #fff;
-  box-shadow: 0 0 10px 3px #44c4ff;
+  // box-shadow: 0 0 10px 3px #44c4ff;
 
+  // filter: blur(2px);
   &.blue {
-    box-shadow: 0 0 10px 3px #44c4ff;
+    // box-shadow: 0 0 10px 3px #44c4ff;
+    filter: drop-shadow(0 0px 12px #44c4ff);
   }
 
   &.green {
-    box-shadow: 0 0 10px 3px #72da03;
+    // box-shadow: 0 0 10px 3px #72da03;
+    filter: drop-shadow(0 0px 12px #72da03);
   }
 
   &.red {
-    box-shadow: 0 0 10px 3px #ff3838;
+    // box-shadow: 0 0 10px 3px #ff3838;
+    filter: drop-shadow(0 0px 12px #ff3838);
   }
 }
 
 .food {
-  background-color: #fff;
   border-radius: 50%;
+  box-shadow: 0 0 10px 3px #44c4ff, 0 0 6px #44c4ff inset;
+  transform: scale(1.5);
+  background: transparent;
+  border: 2px solid #fff;
 
   &.blue {
-    box-shadow: 0 0 10px 3px #44c4ff;
+    box-shadow: 0 0 10px 3px #44c4ff, 0 0 6px #44c4ff inset;
   }
 
   &.green {
-    box-shadow: 0 0 10px 3px #72da03;
+    // box-shadow: 0 0 10px 3px #72da03;
+    box-shadow: 0 0 10px 3px #72da03, 0 0 6px #72da03 inset;
   }
 
   &.red {
-    box-shadow: 0 0 10px 3px #ff3838;
+    // box-shadow: 0 0 10px 3px #ff3838;
+    box-shadow: 0 0 10px 3px #ff3838, 0 0 6px #ff3838 inset;
   }
 }

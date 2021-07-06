@@ -74,7 +74,7 @@ export function redeemBoost(foodType) {
   }
 
   if (foodType.color == 'green') {
-    state.SNAKE_SPEED += 10;
+    state.SNAKE_SPEED += 2;
   }
 
   if (foodType.color == 'red') {

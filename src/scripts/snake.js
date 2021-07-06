@@ -58,6 +58,6 @@ function addSegments() {
 }
 
 export function transformSnake(type) {
-  console.log(type)
+  console.log(type);
   snakeBody = snakeBody.map((segment) => ({ ...segment, color: type.color }));
 }

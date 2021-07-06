@@ -1,4 +1,4 @@
-const trackingSize = 12; // Cell size
+import state from './state'
 
 const gameHeader = document.getElementById('game-header');
 const gameFooter = document.getElementById('game-footer');
@@ -20,8 +20,8 @@ export let GRID_SIZE = getGridSize(gameBoard);
 
 export function getGridSize(gameBoard) {
   return {
-    x: Math.floor(gameBoard.offsetWidth / trackingSize),
-    y: Math.floor(gameBoard.offsetHeight / trackingSize),
+    x: Math.floor(gameBoard.offsetWidth / state.CELL_SIZE),
+    y: Math.floor(gameBoard.offsetHeight / state.CELL_SIZE),
   };
 }
 
