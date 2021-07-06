@@ -1,0 +1,46 @@
+.flex {
+	display: flex;
+}
+
+.game-header-row {
+	justify-content: space-between;
+	padding: 0 20px;
+	position: absolute;
+	top: 50px;
+	left: 0;
+	width: 100%;
+}
+
+.screen {
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	height: 100%;
+	margin: 0 25px;
+	border: 1px solid blue;
+}
+
+.button {
+	cursor: pointer;
+	display: block;
+	outline: none;
+}
+
+// Intro screen
+#logo {
+	margin: auto;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%)
+}
+
+#start {
+	position: absolute;
+	bottom: 60px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+

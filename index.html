@@ -5,11 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Snake</title>
+  <link rel="preload" href="./src/fonts/DeathStar.woff2" as="font" type="font/woff2" crossorigin>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous" defer></script>
   <script src="./src/scripts/game.js" defer type="module"></script>
 </head>
 <body>
   <main class="" id="game-container">
-    <div id="game-board"></div>
+    <div id="game-header">
+      <div class="flex game-header-row">
+        <div id="timer">60</div>
+        <div id="score">0</div>
+      </div>
+
+      <img src="./src/images/header-blue.png" alt="" class="header-bg">
+    </div>
+
+    <div id="game-body">
+      <div id="game-board"></div>
+
+      <!-- Screens -->
+      <div class="screen" id="intro">
+        <img src="./src/images/Logo.png" alt="" id="logo">
+
+      </div>
+    </div>
+
+    <img src="./src/images/footer-blue.png" alt="" id="game-footer">
+    <img src="./src/images/buttons/snake-btn-start.png" alt="" id="start" class="button">
   </main>
 </body>
 </html>

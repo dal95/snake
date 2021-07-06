@@ -1,5 +1,6 @@
 import { GRID_SIZE } from "./init";
 
+console.log(GRID_SIZE)
 export function randomGridPosition() {
   return {
     x: Math.floor(Math.random() * GRID_SIZE.x) + 1,

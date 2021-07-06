@@ -1,4 +1,11 @@
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 @import './normalize';
 @import './variables';
+@import './fonts';
 @import './snake';
 @import './hud';
