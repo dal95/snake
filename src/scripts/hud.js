@@ -1,17 +1,23 @@
+import state from './state';
+
+let sequence;
+const score = document.getElementById('score')
+
 function nextScreen() {
   const id = $(this).data('next');
   $(this)
     .closest('.screen')
     .fadeOut(function () {
-      console.log(id);
       $(id).fadeIn();
-      if ($(id).find('.anim-sequence')) {
-        animate(
-          $(id),
-          $(id).find('.anim-sequence').data('total-frames'),
-          $(id).find('.anim-sequence').data('duration')
-        );
-      }
+      if ($(id).find('.anim-sequence').length < 1)
+        return cancelAnimationFrame(sequence);
+
+      console.log($(id).find('.anim-sequence'));
+      animate(
+        $(id),
+        $(id).find('.anim-sequence').data('total-frames'),
+        $(id).find('.anim-sequence').data('duration')
+      );
     });
 }
 
@@ -48,8 +54,30 @@ function animate(parent, totalFrames, animationDuration = 1500) {
       }
     }
 
-    requestAnimationFrame(step);
+    sequence = requestAnimationFrame(step);
   }
 
-  requestAnimationFrame(step);
+  sequence = requestAnimationFrame(step);
+}
+
+export function updateHud() {
+	updateScore()
+}
+
+function updateScore() {
+	score.textContent = state.SCORE
+}
+
+export function redeemBoost(foodType) {
+  if (foodType.color == 'blue') {
+    state.SCORE += 20;
+  }
+
+  if (foodType.color == 'green') {
+    state.SNAKE_SPEED += 10;
+  }
+
+  if (foodType.color == 'red') {
+    state.SCORE += 10;
+  }
 }

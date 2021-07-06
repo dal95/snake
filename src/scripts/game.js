@@ -2,25 +2,26 @@ import '../sass/styles.scss';
 import {
   update as updateSnake,
   draw as drawSnake,
-  SNAKE_SPEED,
   getSnakeHead,
   snakeIntersection,
 } from './snake.js';
 import { update as updateFood, draw as drawFood } from './food.js';
 import { outsideGrid } from './grid.js';
-import init from './init'
-import './hud';
+import state from './state'
+import init from './init';
+import { updateHud } from './hud';
 
 init();
 
 let lastRenderTime = 0;
 let gameOver = false;
 let countdown = 60;
+let score = 0;
 
 export const gameBoard = document.getElementById('game-board');
 
 // Click start button to play
-document.getElementById('timer').addEventListener('click', function () {
+document.getElementById('play-button').addEventListener('click', function () {
   runCountdown();
   start();
 });
@@ -45,7 +46,7 @@ function main(currentTime) {
   window.requestAnimationFrame(main);
 
   const secondsSinceLastRender = (currentTime - lastRenderTime) / 1000;
-  if (secondsSinceLastRender < 1 / SNAKE_SPEED) return;
+  if (secondsSinceLastRender < 1 / state.SNAKE_SPEED) return;
 
   lastRenderTime = currentTime;
 
@@ -61,6 +62,7 @@ function update() {
   updateSnake();
   updateFood();
   checkDeath();
+  updateHud();
 }
 
 function draw() {

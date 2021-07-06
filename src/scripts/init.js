@@ -50,11 +50,11 @@ export default function init() {
 
 function loadImageSequence(target, folder, prefix, totalFrames) {
   let html = '';
-  for (let i = 1; i < totalFrames -1; i++) {
-    html += `<img class="seq-${i}" src="./src/images/animation/${folder}/${prefix}${String(
-      i
-    ).padStart(3, '0')}.png" />`;
+  for (let i = 1; i < totalFrames - 1; i++) {
+    const imageUrl = `../images/animation/${folder}/${prefix}${String(i).padStart( 3, '0')}.png`
+
+    html += `<img class="seq-${i}" src="${imageUrl}" />`;
   }
 
-  $(target).append(html).data('total-frames', totalFrames)
+  $(target).append(html).data('total-frames', totalFrames);
 }
