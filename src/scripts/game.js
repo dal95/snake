@@ -7,23 +7,24 @@ import {
 } from './snake.js';
 import { update as updateFood, draw as drawFood } from './food.js';
 import { outsideGrid } from './grid.js';
-import state from './state'
-import init from './init';
+import state from './state';
+import init, { getGridSize } from './init';
 import { updateHud } from './hud';
-
-init();
 
 let lastRenderTime = 0;
 let gameOver = false;
 let countdown = 60;
-let score = 0;
 
 export const gameBoard = document.getElementById('game-board');
 
-// Click start button to play
-document.getElementById('play-button').addEventListener('click', function () {
-  runCountdown();
-  start();
+$(window).on('load', function () {
+  init();
+  // Click start button to play
+  $('#play-button, [data-next="#play-screen"]').on('click', function () {
+    state.GRID_SIZE = getGridSize(gameBoard);
+    runCountdown();
+    start();
+  });
 });
 
 const timer = document.querySelector('#timer');

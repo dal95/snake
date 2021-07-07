@@ -1,4 +1,4 @@
-import state from './state'
+import state from './state';
 
 const gameHeader = document.getElementById('game-header');
 const gameFooter = document.getElementById('game-footer');
@@ -6,22 +6,11 @@ const gameBody = document.getElementById('game-body');
 const gameContainer = document.getElementById('game-container');
 export const gameBoard = document.getElementById('game-board');
 
-export let GRID_SIZE = getGridSize(gameBoard);
 
-// export function init() {
-//   gameBody.style.height =
-//     gameContainer.offsetHeight -
-//     gameHeader.offsetHeight -
-//     gameFooter.offsetHeight +
-//     'px';
-
-// 		GRID_SIZE = getGridSize(gameBoard)
-// }
-
-export function getGridSize(gameBoard) {
+export function getGridSize(element) {
   return {
-    x: Math.floor(gameBoard.offsetWidth / state.CELL_SIZE),
-    y: Math.floor(gameBoard.offsetHeight / state.CELL_SIZE),
+    x: Math.floor(element.offsetWidth / state.CELL_DIMENSION),
+    y: Math.floor(element.offsetHeight / state.CELL_DIMENSION),
   };
 }
 
@@ -51,7 +40,9 @@ export default function init() {
 function loadImageSequence(target, folder, prefix, totalFrames) {
   let html = '';
   for (let i = 1; i < totalFrames - 1; i++) {
-    const imageUrl = `../images/animation/${folder}/${prefix}${String(i).padStart( 3, '0')}.png`
+    const imageUrl = `../images/animation/${folder}/${prefix}${String(
+      i
+    ).padStart(3, '0')}.png`;
 
     html += `<img class="seq-${i}" src="${imageUrl}" />`;
   }

@@ -1,18 +1,19 @@
-import { GRID_SIZE } from "./init";
+import state from './state';
+import { gameBoard, getGridSize } from './init';
 
-console.log(GRID_SIZE)
+state.GRID_SIZE = getGridSize(gameBoard);
 export function randomGridPosition() {
   return {
-    x: Math.floor(Math.random() * GRID_SIZE.x) + 1,
-    y: Math.floor(Math.random() * GRID_SIZE.y) + 1,
+    x: Math.floor(Math.random() * state.GRID_SIZE.x) || 1,
+    y: Math.floor(Math.random() * state.GRID_SIZE.y) || 1,
   };
 }
 
 export function outsideGrid(position) {
   return (
     position.x < 1 ||
-    position.x > GRID_SIZE.x ||
+    position.x >= state.GRID_SIZE.x ||
     position.y < 1 ||
-    position.y > GRID_SIZE.y
+    position.y > state.GRID_SIZE.y
   );
 }

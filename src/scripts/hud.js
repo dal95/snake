@@ -1,7 +1,7 @@
 import state from './state';
 
 let sequence;
-const score = document.getElementById('score')
+const score = document.getElementById('score');
 
 function nextScreen() {
   const id = $(this).data('next');
@@ -12,7 +12,6 @@ function nextScreen() {
       if ($(id).find('.anim-sequence').length < 1)
         return cancelAnimationFrame(sequence);
 
-      console.log($(id).find('.anim-sequence'));
       animate(
         $(id),
         $(id).find('.anim-sequence').data('total-frames'),
@@ -61,16 +60,19 @@ function animate(parent, totalFrames, animationDuration = 1500) {
 }
 
 export function updateHud() {
-	updateScore()
+  updateScore();
 }
 
 function updateScore() {
-	score.textContent = state.SCORE
+  score.textContent = state.SCORE;
 }
 
 export function redeemBoost(foodType) {
   if (foodType.color == 'blue') {
     state.SCORE += 20;
+    // $(score).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+    score.classList.add('blink');
+		setTimeout(() => score.classList.remove('blink'), 500)
   }
 
   if (foodType.color == 'green') {
@@ -79,5 +81,10 @@ export function redeemBoost(foodType) {
 
   if (foodType.color == 'red') {
     state.SCORE += 10;
+    // $(score).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+    score.classList.add('blink');
+		setTimeout(() => score.classList.remove('blink'), 500)
   }
 }
+
+function updateBanner() {}

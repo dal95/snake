@@ -6,8 +6,8 @@
 }
 
 .center-self {
-	margin-left: auto;
-	margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .center {
@@ -15,7 +15,7 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-	width: 100%;
+  width: 100%;
 }
 
 .center-x {
@@ -23,7 +23,7 @@
   left: 50%;
   top: 0;
   transform: translateX(-50%);
-	width: 100%;
+  width: 100%;
 }
 
 .center-y {
@@ -31,7 +31,7 @@
   top: 50%;
   left: 0;
   transform: translateY(-50%);
-	width: 100%;
+  width: 100%;
 }
 
 .game-header-row {
@@ -98,7 +98,7 @@
 }
 
 .anim-sequence {
-	height: 140px;
+  height: 140px;
 }
 
 .anim-sequence img {
@@ -111,4 +111,26 @@
   // and place them in the middle of the screen
   left: 50%;
   transform: translateX(-50%);
+}
+
+.blink {
+	animation: blink .5s ease-in;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }

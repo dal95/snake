@@ -17,7 +17,7 @@ img {
   background-size: cover;
   // max-width: 375px; // Iphone x
   max-width: 400px;
-  height: 100vh;
+  height: calc(100vh - 40px);
   margin: auto;
 }
 
@@ -27,6 +27,7 @@ img {
   grid-template-rows: repeat(auto-fill, 10px);
   grid-template-columns: repeat(auto-fill, 10px);
   height: 100%;
+  border: 1px solid blue;
 }
 
 #game-body {
