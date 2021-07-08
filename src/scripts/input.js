@@ -1,5 +1,4 @@
 import nipplejs from 'nipplejs';
-import { gameBoard } from './init';
 
 let inputDirection = { x: 0, y: 0 };
 let lastInputDirection = { x: 0, y: 0 };
@@ -7,18 +6,13 @@ let lastInputDirection = { x: 0, y: 0 };
 const options = {
   zone: document.getElementById('play-screen'),
   dynamicPage: true,
-  // mode: 'static',
-  // position: {
-  //   x: 100,
-  //   y: 100
-  // }
 };
 
 const joy = nipplejs.create(options);
 
 joy
   .on('added', function (evt, nipple) {
-    nipple.on('start move end plain dir', function (evt, test) {
+    nipple.on('dir', function (evt) {
       switch (evt.target.direction.angle) {
         case 'up':
           if (lastInputDirection.y !== 0) break;
