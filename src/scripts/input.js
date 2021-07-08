@@ -7,11 +7,11 @@ let lastInputDirection = { x: 0, y: 0 };
 const options = {
   zone: document.getElementById('play-screen'),
   dynamicPage: true,
-  mode: 'static',
-  position: {
-    x: gameBoard.offsetWidth / 2,
-    y: gameBoard.offsetHeight - 100,
-  },
+  // mode: 'static',
+  // position: {
+  //   x: gameBoard.offsetWidth / 2,
+  //   y: gameBoard.offsetHeight - 100,
+  // },
 };
 
 const joy = nipplejs.create(options);
