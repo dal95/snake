@@ -9,34 +9,35 @@ const options = {
   dynamicPage: true,
   // mode: 'static',
   // position: {
-  //   x: gameBoard.offsetWidth / 2,
-  //   y: gameBoard.offsetHeight - 100,
-  // },
+  //   x: 100,
+  //   y: 100
+  // }
 };
 
 const joy = nipplejs.create(options);
 
 joy
-  .get(0)
-  .on('dir', function (evt, nipple) {
-    switch (evt.target.direction.angle) {
-      case 'up':
-        if (lastInputDirection.y !== 0) break;
-        inputDirection = { x: 0, y: -1 };
-        break;
-      case 'down':
-        if (lastInputDirection.y !== 0) break;
-        inputDirection = { x: 0, y: 1 };
-        break;
-      case 'left':
-        if (lastInputDirection.x !== 0) break;
-        inputDirection = { x: -1, y: 0 };
-        break;
-      case 'right':
-        if (lastInputDirection.x !== 0) break;
-        inputDirection = { x: 1, y: 0 };
-        break;
-    }
+  .on('added', function (evt, nipple) {
+    nipple.on('start move end plain dir', function (evt, test) {
+      switch (evt.target.direction.angle) {
+        case 'up':
+          if (lastInputDirection.y !== 0) break;
+          inputDirection = { x: 0, y: -1 };
+          break;
+        case 'down':
+          if (lastInputDirection.y !== 0) break;
+          inputDirection = { x: 0, y: 1 };
+          break;
+        case 'left':
+          if (lastInputDirection.x !== 0) break;
+          inputDirection = { x: -1, y: 0 };
+          break;
+        case 'right':
+          if (lastInputDirection.x !== 0) break;
+          inputDirection = { x: 1, y: 0 };
+          break;
+      }
+    });
   })
   .on('removed', function (evt, nipple) {
     nipple.off('start move end dir plain');
