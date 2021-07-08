@@ -30,7 +30,7 @@ export function preload(images) {
     var imageObj = new Image();
     for (i = 0; i <= images.length - 1; i++) {
       console.log(images[i])
-      // $('body').append('<img src="' + images[i] + '" class="preloaded-ignore-me"/>');// Write to page (uncomment to check images)
+      $('body').append('<img src="' + images[i] + '" class="preloaded-ignore-me"/>');// Write to page (uncomment to check images)
       imageObj.src = images[i];
     }
   }
