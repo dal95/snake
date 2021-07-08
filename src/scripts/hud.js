@@ -23,6 +23,8 @@ export const frame = {
   'footer-red': footerRedImg,
 };
 
+const preloadImages = [...Object.values(frame), holdonImgUrl, loadingImgUrl]
+
 export function preload(images) {
   console.log(images)
   if (document.images) {
