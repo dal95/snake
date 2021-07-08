@@ -1,5 +1,8 @@
 import 'imagesloaded';
+
 import '../sass/styles.scss';
+import timeUpImgUrl from '../images/banner/TIMEUP.png';
+
 import {
   update as updateSnake,
   draw as drawSnake,
@@ -12,6 +15,7 @@ import state from './state';
 import init, { getGridSize } from './init';
 import {
   updateHud,
+  updateAsset,
   changeFrame,
   nextScreen,
   loadingScreen,
@@ -34,6 +38,7 @@ $('#game-container')
   .always(function () {
     $('#overlay').fadeOut();
     init();
+
     // Click start button to play
     $('#play-button, [data-next="#play-screen"]').on('click', function () {
       state.GRID_SIZE = getGridSize(gameBoard);
@@ -60,10 +65,13 @@ function runCountdown() {
 
 function main(currentTime) {
   if (gameOver) {
+    if (countdown <= 0) {
+      updateAsset(gameBanner, timeUpImgUrl);
+    }
     countdown = 0;
 
     changeFrame('red-headless');
-    setTimeout(() => loadingScreen(), 500);
+    setTimeout(() => loadingScreen(), 1500);
 
     // if (confirm('You lost. Press ok to restart.')) {
     //   window.location = '/';
@@ -84,8 +92,8 @@ function main(currentTime) {
 
 function start() {
   state.GRID_SIZE = getGridSize(gameBoard);
-  window.requestAnimationFrame(main);
   $(gameBanner).fadeOut();
+  window.requestAnimationFrame(main);
 }
 
 function update() {

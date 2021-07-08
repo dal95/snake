@@ -7,6 +7,10 @@ import loadingImgUrl from '../images/banner/LOADING-red.png';
 import congratImgUrl from '../images/banner/CONGRATULATION.png';
 import NBTImgUrl from '../images/banner/NEXTBIGTHING.png';
 import howtoplayImgUrl from '../images/banner/HOWTOPLAY.png';
+import timeUpImgUrl from '../images/banner/TIMEUP.png';
+import xlImgUrl from '../images/banner/EXTRALONG.png';
+import xfImgUrl from '../images/banner/EXTRAFIRM.png';
+import xvImgUrl from '../images/banner/EXTRAVALUE.png';
 
 import pipeBlueImg from '../images/pipe-blue.png';
 import pipeRedImg from '../images/pipe-red.png';
@@ -35,6 +39,10 @@ export const preloadImages = [
   NBTImgUrl,
   howtoplayImgUrl,
   introImgUrl,
+  timeUpImgUrl,
+  xlImgUrl,
+  xvImgUrl,
+  xfImgUrl,
 ];
 
 export function preload(images) {
@@ -60,7 +68,7 @@ const gameContainer = document.getElementById('game-container');
 const gameTitle = document.querySelector('.big-title');
 
 $('[data-next="#coming-soon"]').click(function () {
-  updateAsset(gameTitle, introImgUrl)
+  updateAsset(gameTitle, introImgUrl);
   updateAsset(gameBanner, NBTImgUrl);
 });
 
@@ -91,9 +99,8 @@ export function nextScreen() {
 }
 
 export function loadingScreen() {
-  $(gameBanner).attr('src', loadingImgUrl).fadeIn();
-
   updateAsset(gameTitle, holdonImgUrl);
+  updateAsset(gameBanner, loadingImgUrl);
 
   $('#data-transmit').fadeIn();
   animate($('#data-transmit'), 59, 1000);
@@ -160,7 +167,7 @@ function updateTitle(imageUrl) {
   $(gameTitle).attr('src', imageUrl).fadeIn();
 }
 
-function updateAsset(element, imageUrl) {
+export function updateAsset(element, imageUrl) {
   if ($(element).attr('src') == imageUrl) return;
 
   $(element).fadeOut(function () {
@@ -175,19 +182,20 @@ function updateScore() {
 export function redeemBoost(foodType) {
   if (foodType.color == 'blue') {
     state.SCORE += 20;
-    // $(score).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
     score.classList.add('blink');
+    updateAsset(gameBanner, xlImgUrl);
     setTimeout(() => score.classList.remove('blink'), 500);
   }
 
   if (foodType.color == 'green') {
     state.SNAKE_SPEED += 2;
+    updateAsset(gameBanner, xfImgUrl);
   }
 
   if (foodType.color == 'red') {
     state.SCORE += 10;
-    // $(score).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
     score.classList.add('blink');
+    updateAsset(gameBanner, xvImgUrl);
     setTimeout(() => score.classList.remove('blink'), 500);
   }
 }
@@ -217,10 +225,9 @@ export function changeFrame(str) {
   const footerUrl = frame[`footer-${color}`];
   const bodyUrl = frame[`pipe-${color}`];
   $(gameBody).css('background-image', 'url(' + bodyUrl + ')');
-  $('.banner-image').hide();
   $(gameHeader).find('.header-bg').attr('src', headerUrl);
   $(gameFooter).attr('src', footerUrl);
-  $('.big-title').show();
+  $('.big-title').fadeIn();
 }
 
 export function resetGame() {
