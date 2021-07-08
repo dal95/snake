@@ -65,9 +65,10 @@ export function nextScreen() {
 }
 
 export function loadingScreen() {
+  $(gameBanner).attr('src', loadingImgUrl).fadeIn();
+
   updateTitle(holdonImgUrl);
 
-  $(gameBanner).attr('src', loadingImgUrl).fadeIn();
   $('#data-transmit').fadeIn();
   animate($('#data-transmit'), 59, 1000);
   resetGame();

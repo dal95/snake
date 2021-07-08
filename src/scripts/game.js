@@ -52,7 +52,7 @@ function main(currentTime) {
     countdown = 0;
 
     changeFrame('red-headless');
-    setTimeout(() => loadingScreen(), 300);
+    setTimeout(() => loadingScreen(), 500);
 
     // if (confirm('You lost. Press ok to restart.')) {
     //   window.location = '/';
