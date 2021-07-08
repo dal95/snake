@@ -32,6 +32,7 @@ $(window).on('load', function () {
     runCountdown();
     start();
   });
+  console.log('loaded')
 });
 
 $('#play-again').click(function () {
