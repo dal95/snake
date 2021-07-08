@@ -1,6 +1,12 @@
 import { getInputDirection } from './input.js';
 
-let snakeBody = [{ x: 1, y: 1, color: 'blue' }];
+let snakeBody = [
+  { x: 11, y: 11, color: 'blue' },
+  // { x: 5, y: 1, color: 'blue' },
+];
+
+const initial = [...snakeBody];
+
 let newSegments = 0;
 
 export function update() {
@@ -58,6 +64,5 @@ function addSegments() {
 }
 
 export function transformSnake(type) {
-  console.log(type);
   snakeBody = snakeBody.map((segment) => ({ ...segment, color: type.color }));
 }

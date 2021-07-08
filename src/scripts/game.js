@@ -9,7 +9,13 @@ import { update as updateFood, draw as drawFood } from './food.js';
 import { outsideGrid } from './grid.js';
 import state from './state';
 import init, { getGridSize } from './init';
-import { updateHud } from './hud';
+import {
+  updateHud,
+  changeFrame,
+  nextScreen,
+  loadingScreen,
+  gameBanner,
+} from './hud';
 
 let lastRenderTime = 0;
 let gameOver = false;
@@ -18,6 +24,7 @@ let countdown = 60;
 export const gameBoard = document.getElementById('game-board');
 
 $(window).on('load', function () {
+  $('#overlay').fadeOut();
   init();
   // Click start button to play
   $('#play-button, [data-next="#play-screen"]').on('click', function () {
@@ -25,6 +32,10 @@ $(window).on('load', function () {
     runCountdown();
     start();
   });
+});
+
+$('#play-again').click(function () {
+  location.reload();
 });
 
 const timer = document.querySelector('#timer');
@@ -38,9 +49,13 @@ function runCountdown() {
 function main(currentTime) {
   if (gameOver) {
     countdown = 0;
-    if (confirm('You lost. Press ok to restart.')) {
-      window.location = '/';
-    }
+
+    changeFrame('red-headless');
+    setTimeout(() => loadingScreen(), 300);
+
+    // if (confirm('You lost. Press ok to restart.')) {
+    //   window.location = '/';
+    // }
     return;
   }
 
@@ -56,7 +71,9 @@ function main(currentTime) {
 }
 
 function start() {
+  state.GRID_SIZE = getGridSize(gameBoard);
   window.requestAnimationFrame(main);
+  $(gameBanner).fadeOut();
 }
 
 function update() {

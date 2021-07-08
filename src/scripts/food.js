@@ -3,7 +3,7 @@ import { randomGridPosition } from './grid.js';
 import { redeemBoost } from './hud';
 
 let food = getRandomFood();
-const EXPANSION_RATE = 5;
+const EXPANSION_RATE = 1;
 
 export function update() {
   if (onSnake(food.position)) {

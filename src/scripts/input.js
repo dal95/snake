@@ -12,7 +12,6 @@ const joy = nipplejs.create(options);
 joy
   .on('added', function (evt, nipple) {
     nipple.on('dir', function (evt) {
-      console.log(evt.target.direction.angle);
       switch (evt.target.direction.angle) {
         case 'up':
           if (lastInputDirection.y !== 0) break;

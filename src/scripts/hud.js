@@ -1,14 +1,50 @@
 import state from './state';
+import loadingImgUrl from '../images/banner/LOADING-red.png';
+import holdonImgUrl from '../images/title/snake-title-holdon.png';
+import ohyesImgUrl from '../images/title/snake-title-oh-yes.png';
+import congratImgUrl from '../images/banner/CONGRATULATION.png';
+import howtoplayImgUrl from '../images/banner/HOWTOPLAY.png';
+import pipeBlueImg from '../images/pipe-blue.png';
+import pipeRedImg from '../images/pipe-red.png';
+import headerRedHeadlessImg from '../images/header-red-headless.png';
+import headerBlueImg from '../images/header-blue.png';
+import headerBlueHeadlessImg from '../images/header-blue-headless.png';
+import footerBlueImg from '../images/footer-blue.png';
+import footerRedImg from '../images/footer-red.png';
+
+const frame = {
+  'pipe-blue': pipeBlueImg,
+  'pipe-red': pipeRedImg,
+  'header-red-headless': headerRedHeadlessImg,
+  'header-blue': headerBlueImg,
+  'header-blue-headless': headerBlueHeadlessImg,
+  'footer-blue': footerBlueImg,
+  'footer-red': footerRedImg,
+};
 
 let sequence;
 const score = document.getElementById('score');
 
-function nextScreen() {
+const gameHeader = document.getElementById('game-header');
+const gameBoard = document.getElementById('game-board');
+const gameFooter = document.getElementById('game-footer');
+const gameBody = document.getElementById('game-body');
+export const gameBanner = document.querySelector('.banner-image');
+const gameContainer = document.getElementById('game-container');
+const gameTitle = document.querySelector('.big-title');
+
+export function nextScreen() {
   const id = $(this).data('next');
+  updateAsset(gameBanner, howtoplayImgUrl);
   $(this)
     .closest('.screen')
     .fadeOut(function () {
       $(id).fadeIn();
+
+      if ($(id).data('animate-on-visible')) {
+        animateOnvisible($(id).data('animate-on-visible'), id);
+      }
+
       if ($(id).find('.anim-sequence').length < 1)
         return cancelAnimationFrame(sequence);
 
@@ -18,6 +54,32 @@ function nextScreen() {
         $(id).find('.anim-sequence').data('duration')
       );
     });
+}
+
+export function loadingScreen() {
+  updateTitle(holdonImgUrl);
+
+  $(gameBanner).attr('src', loadingImgUrl).fadeIn();
+  $('#data-transmit').fadeIn();
+  animate($('#data-transmit'), 59, 1000);
+  resetGame();
+
+  // Simulate Submit the data
+  setTimeout(() => showFinalScore(), 3000);
+}
+
+function showFinalScore() {
+  $('#result-score').text(state.SCORE || '0')
+  $('#result-score').fadeIn()
+  // Change the frame to blue here
+  //-
+  //////////////////////////////////
+  updateTitle(ohyesImgUrl);
+  changeFrame('blue-headless');
+  updateAsset(gameBanner, congratImgUrl);
+  $('.screen').fadeOut();
+  $('#final-score').fadeIn();
+  animate($('#final-score'), 29, 1000);
 }
 
 $('[data-next]').click(nextScreen);
@@ -63,6 +125,14 @@ export function updateHud() {
   updateScore();
 }
 
+function updateTitle(imageUrl) {
+  $(gameTitle).attr('src', imageUrl).fadeIn();
+}
+
+function updateAsset(element, imageUrl) {
+  $(element).attr('src', imageUrl).fadeIn();
+}
+
 function updateScore() {
   score.textContent = state.SCORE;
 }
@@ -72,7 +142,7 @@ export function redeemBoost(foodType) {
     state.SCORE += 20;
     // $(score).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
     score.classList.add('blink');
-		setTimeout(() => score.classList.remove('blink'), 500)
+    setTimeout(() => score.classList.remove('blink'), 500);
   }
 
   if (foodType.color == 'green') {
@@ -83,8 +153,41 @@ export function redeemBoost(foodType) {
     state.SCORE += 10;
     // $(score).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
     score.classList.add('blink');
-		setTimeout(() => score.classList.remove('blink'), 500)
+    setTimeout(() => score.classList.remove('blink'), 500);
   }
 }
 
 function updateBanner() {}
+
+function animateOnvisible(target, dep) {
+  if ($(dep).is(':hidden')) return;
+
+  $(target).addClass('blink').css({
+    animationIterationCount: 1,
+    animationDuration: 1,
+  });
+}
+
+export function changeFrame(str) {
+  // blue, blue-headless, red-headless
+  const [color, type] = str.split('-');
+
+  let headerUrl = frame[`header-${color}`];
+  // Style for headless
+  if (type == 'headless') {
+    $('#timer, #score').hide();
+    headerUrl = frame[`header-${color}-headless`];
+  }
+
+  const footerUrl = frame[`footer-${color}`];
+  const bodyUrl = frame[`pipe-${color}`];
+  $(gameBody).css('background-image', 'url(' + bodyUrl + ')');
+  $('.banner-image').hide();
+  $(gameHeader).find('.header-bg').attr('src', headerUrl);
+  $(gameFooter).attr('src', footerUrl);
+  $('.big-title').show();
+}
+
+export function resetGame() {
+  $(gameBoard).empty();
+}
