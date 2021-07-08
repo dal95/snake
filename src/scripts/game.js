@@ -1,3 +1,4 @@
+import 'imagesloaded';
 import '../sass/styles.scss';
 import {
   update as updateSnake,
@@ -15,6 +16,8 @@ import {
   nextScreen,
   loadingScreen,
   gameBanner,
+  preload,
+  frame
 } from './hud';
 
 let lastRenderTime = 0;
@@ -23,17 +26,25 @@ let countdown = 60;
 
 export const gameBoard = document.getElementById('game-board');
 
-$(window).on('load', function () {
-  $('#overlay').fadeOut();
-  init();
-  // Click start button to play
-  $('#play-button, [data-next="#play-screen"]').on('click', function () {
-    state.GRID_SIZE = getGridSize(gameBoard);
-    runCountdown();
-    start();
+preload(Object.values(frame))
+
+$('#game-container')
+  .imagesLoaded()
+  .always(function () {
+    $('#overlay').fadeOut();
+    init();
+    // Click start button to play
+    $('#play-button, [data-next="#play-screen"]').on('click', function () {
+      state.GRID_SIZE = getGridSize(gameBoard);
+      runCountdown();
+      start();
+    });
+    console.log('loaded');
+  })
+  .progress(function (instance, image) {
+    var result = image.isLoaded ? 'loaded' : 'broken';
+    console.log('image is ' + result + ' for ' + image.img.src);
   });
-  console.log('loaded');
-});
 
 $('#play-again').click(function () {
   location.reload();

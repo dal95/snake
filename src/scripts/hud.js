@@ -13,7 +13,7 @@ import headerBlueHeadlessImg from '../images/header-blue-headless.png';
 import footerBlueImg from '../images/footer-blue.png';
 import footerRedImg from '../images/footer-red.png';
 
-const frame = {
+export const frame = {
   'pipe-blue': pipeBlueImg,
   'pipe-red': pipeRedImg,
   'header-red-headless': headerRedHeadlessImg,
@@ -22,6 +22,19 @@ const frame = {
   'footer-blue': footerBlueImg,
   'footer-red': footerRedImg,
 };
+
+export function preload(images) {
+  console.log(images)
+  if (document.images) {
+    var i = 0;
+    var imageObj = new Image();
+    for (i = 0; i <= images.length - 1; i++) {
+      console.log(images[i])
+      // $('body').append('<img src="' + images[i] + '" class="preloaded-ignore-me"/>');// Write to page (uncomment to check images)
+      imageObj.src = images[i];
+    }
+  }
+}
 
 let sequence;
 const score = document.getElementById('score');
@@ -35,11 +48,12 @@ const gameContainer = document.getElementById('game-container');
 const gameTitle = document.querySelector('.big-title');
 
 $('[data-next="#coming-soon"]').click(function () {
-  updateAsset(gameBanner, NBTImgUrl)
+  updateAsset(gameBanner, NBTImgUrl);
 });
 
 export function nextScreen() {
   const id = $(this).data('next');
+  console.log($(id).data('banner'));
   if ($(id).data('banner') == 'howtoplay') {
     updateAsset(gameBanner, howtoplayImgUrl);
   }
@@ -78,8 +92,8 @@ export function loadingScreen() {
 }
 
 function showFinalScore() {
-  $('#result-score').text(state.SCORE || '0')
-  $('#result-score').fadeIn()
+  $('#result-score').text(state.SCORE || '0');
+  $('#result-score').fadeIn();
   // Change the frame to blue here
   //-
   //////////////////////////////////
