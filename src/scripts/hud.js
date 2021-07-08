@@ -65,7 +65,7 @@ export function loadingScreen() {
   resetGame();
 
   // Simulate Submit the data
-  setTimeout(() => showFinalScore(), 3000);
+  setTimeout(() => showFinalScore(), 8000);
 }
 
 function showFinalScore() {
