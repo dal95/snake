@@ -1,10 +1,13 @@
 import state from './state';
-import loadingImgUrl from '../images/banner/LOADING-red.png';
 import holdonImgUrl from '../images/title/snake-title-holdon.png';
 import ohyesImgUrl from '../images/title/snake-title-oh-yes.png';
+import introImgUrl from '../images/title/snake-title-introducing.png';
+
+import loadingImgUrl from '../images/banner/LOADING-red.png';
 import congratImgUrl from '../images/banner/CONGRATULATION.png';
 import NBTImgUrl from '../images/banner/NEXTBIGTHING.png';
 import howtoplayImgUrl from '../images/banner/HOWTOPLAY.png';
+
 import pipeBlueImg from '../images/pipe-blue.png';
 import pipeRedImg from '../images/pipe-red.png';
 import headerRedHeadlessImg from '../images/header-red-headless.png';
@@ -23,16 +26,23 @@ export const frame = {
   'footer-red': footerRedImg,
 };
 
-const preloadImages = [...Object.values(frame), holdonImgUrl, loadingImgUrl]
+export const preloadImages = [
+  ...Object.values(frame),
+  holdonImgUrl,
+  loadingImgUrl,
+  ohyesImgUrl,
+  congratImgUrl,
+  NBTImgUrl,
+  howtoplayImgUrl,
+  introImgUrl,
+];
 
 export function preload(images) {
-  console.log(images)
   if (document.images) {
     var i = 0;
     var imageObj = new Image();
     for (i = 0; i <= images.length - 1; i++) {
-      console.log(images[i])
-      $('body').append('<img src="' + images[i] + '" class="preloaded"/>');// Write to page (uncomment to check images)
+      $('body').append('<img src="' + images[i] + '" class="preloaded"/>'); // Write to page (uncomment to check images)
       imageObj.src = images[i];
     }
   }
@@ -50,12 +60,12 @@ const gameContainer = document.getElementById('game-container');
 const gameTitle = document.querySelector('.big-title');
 
 $('[data-next="#coming-soon"]').click(function () {
+  updateAsset(gameTitle, introImgUrl)
   updateAsset(gameBanner, NBTImgUrl);
 });
 
 export function nextScreen() {
   const id = $(this).data('next');
-  console.log($(id).data('banner'));
   if ($(id).data('banner') == 'howtoplay') {
     updateAsset(gameBanner, howtoplayImgUrl);
   }
@@ -83,7 +93,7 @@ export function nextScreen() {
 export function loadingScreen() {
   $(gameBanner).attr('src', loadingImgUrl).fadeIn();
 
-  updateTitle(holdonImgUrl);
+  updateAsset(gameTitle, holdonImgUrl);
 
   $('#data-transmit').fadeIn();
   animate($('#data-transmit'), 59, 1000);
@@ -94,16 +104,12 @@ export function loadingScreen() {
 }
 
 function showFinalScore() {
-  $('#result-score').text(state.SCORE || '0');
-  $('#result-score').fadeIn();
-  // Change the frame to blue here
-  //-
-  //////////////////////////////////
-  updateTitle(ohyesImgUrl);
-  changeFrame('blue-headless');
-  updateAsset(gameBanner, congratImgUrl);
   $('.screen').fadeOut();
+  changeFrame('blue-headless');
+  updateAsset(gameTitle, ohyesImgUrl);
+  updateAsset(gameBanner, congratImgUrl);
   $('#final-score').fadeIn();
+  $('#result-score').text(state.SCORE || '0');
   animate($('#final-score'), 29, 1000);
 }
 
@@ -155,7 +161,11 @@ function updateTitle(imageUrl) {
 }
 
 function updateAsset(element, imageUrl) {
-  $(element).attr('src', imageUrl).fadeIn();
+  if ($(element).attr('src') == imageUrl) return;
+
+  $(element).fadeOut(function () {
+    $(this).attr('src', imageUrl).fadeIn();
+  });
 }
 
 function updateScore() {

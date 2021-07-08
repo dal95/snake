@@ -17,7 +17,8 @@ import {
   loadingScreen,
   gameBanner,
   preload,
-  frame
+  frame,
+  preloadImages,
 } from './hud';
 
 let lastRenderTime = 0;
@@ -26,7 +27,7 @@ let countdown = 60;
 
 export const gameBoard = document.getElementById('game-board');
 
-preload(Object.values(frame))
+preload(preloadImages);
 
 $('#game-container')
   .imagesLoaded()
@@ -39,7 +40,6 @@ $('#game-container')
       runCountdown();
       start();
     });
-    console.log('loaded');
   })
   .progress(function (instance, image) {
     var result = image.isLoaded ? 'loaded' : 'broken';
