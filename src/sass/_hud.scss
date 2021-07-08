@@ -164,3 +164,10 @@
   margin: 20px 0;
   font-weight: bold;
 }
+
+.preload {
+  height: 1px;
+  width: 1px;
+  position: absolute;
+  z-index: -999
+}
