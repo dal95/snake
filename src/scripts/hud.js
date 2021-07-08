@@ -3,6 +3,7 @@ import loadingImgUrl from '../images/banner/LOADING-red.png';
 import holdonImgUrl from '../images/title/snake-title-holdon.png';
 import ohyesImgUrl from '../images/title/snake-title-oh-yes.png';
 import congratImgUrl from '../images/banner/CONGRATULATION.png';
+import NBTImgUrl from '../images/banner/NEXTBIGTHING.png';
 import howtoplayImgUrl from '../images/banner/HOWTOPLAY.png';
 import pipeBlueImg from '../images/pipe-blue.png';
 import pipeRedImg from '../images/pipe-red.png';
@@ -33,9 +34,16 @@ export const gameBanner = document.querySelector('.banner-image');
 const gameContainer = document.getElementById('game-container');
 const gameTitle = document.querySelector('.big-title');
 
+$('[data-next="#coming-soon"]').click(function () {
+  updateAsset(gameBanner, NBTImgUrl)
+});
+
 export function nextScreen() {
   const id = $(this).data('next');
-  updateAsset(gameBanner, howtoplayImgUrl);
+  if ($(id).data('banner') == 'howtoplay') {
+    updateAsset(gameBanner, howtoplayImgUrl);
+  }
+
   $(this)
     .closest('.screen')
     .fadeOut(function () {
@@ -65,7 +73,7 @@ export function loadingScreen() {
   resetGame();
 
   // Simulate Submit the data
-  setTimeout(() => showFinalScore(), 8000);
+  setTimeout(() => showFinalScore(), 1000);
 }
 
 function showFinalScore() {

@@ -63,7 +63,7 @@
       </div>
 
       <!-- Tutorial Countdown -->
-      <div class="screen tutorial" id="tutorial-countdown" data-animate-on-visible="#timer">
+      <div class="screen tutorial" id="tutorial-countdown" data-animate-on-visible="#timer" data-banner='howtoplay'>
         <div class="center-y">
           <div class="text">You have 60 seconds to play the game</div>
         </div>
@@ -75,7 +75,7 @@
       </div>
 
       <!-- Tutorial Countdown -->
-      <div class="screen tutorial" id="tutorial-score" data-animate-on-visible="#score">
+      <div class="screen tutorial" id="tutorial-score" data-animate-on-visible="#score" data-banner='howtoplay'>
         <div class="center-y">
           <div class="text">You have to score by touching the ring </div>
           <!--
@@ -90,7 +90,7 @@
       </div>
 
       <!-- Tutorial play snake -->
-      <div class="screen tutorial" id="tutorial-snake">
+      <div class="screen tutorial" id="tutorial-snake" data-banner='howtoplay'>
         <div class="center-y">
           <img src="./src/images/score-table.png" alt="" class="center-self">
 
@@ -105,7 +105,7 @@
       </div>
 
       <!-- Tutorial How to play -->
-      <div class="screen tutorial" id="tutorial-htp">
+      <div class="screen tutorial" id="tutorial-htp" data-banner='howtoplay'>
         <div class="center-y">
           <div class="text">To move the stick &
             collect rings, simply swipe up, down, left & right.
@@ -151,12 +151,15 @@
         <div class="center-y">
           <div class="anim-sequence trophy-sequence"></div>
           <div class="text" style="font-weight: bold;">YOUR SCORE:</div>
-          <div id="result-score" class="text">0</div>
+          <div id="result-score" class="text" style="font-size: 40px">0</div>
           <div class="text" style="margin-bottom: 30px">
             <div>Congratulations!</div>
             Click NEXT to learn
             more about:
-            the NEXT BIG THING!
+
+            <div>
+              the NEXT BIG THING!
+            </div>
           </div>
 
           <img src="./src/images/buttons/snake-btn-next.png" alt="" class="button next" data-next="#coming-soon">
@@ -166,7 +169,7 @@
       <div class="screen tutorial" id="coming-soon">
         <div class="center-y">
           <img src="./src/images/COMINGSOON.png" alt="" style="margin-bottom: 40px">
-          <div class="text" style="margin-bottom: 30px; font-size: 20px;" >
+          <div class="text" style="margin-bottom: 30px; font-size: 20px;">
             Stay tuned next week
             to find out about the
             NEXT new product
