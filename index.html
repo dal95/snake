@@ -66,6 +66,7 @@
       <div class="screen tutorial" id="tutorial-countdown" data-animate-on-visible="#timer" data-banner='howtoplay'>
         <div class="center-y">
           <div class="text">You have 60 seconds to play the game</div>
+          <div class="anim-sequence snake-sequence"></div>
         </div>
 
         <div class="footer-buttons">
@@ -78,9 +79,7 @@
       <div class="screen tutorial" id="tutorial-score" data-animate-on-visible="#score" data-banner='howtoplay'>
         <div class="center-y">
           <div class="text">You have to score by touching the ring </div>
-          <!--
-          <div class="anim-sequence snake-sequence">
-          </div> -->
+          <div class="anim-sequence snake-sequence"></div>
         </div>
 
         <div class="footer-buttons">
@@ -94,8 +93,7 @@
         <div class="center-y">
           <img src="./src/images/score-table.png" alt="" class="center-self">
 
-          <div class="anim-sequence snake-sequence">
-          </div>
+          <div class="anim-sequence snake-sequence"></div>
         </div>
 
         <div class="footer-buttons">
@@ -113,7 +111,6 @@
 
           </div>
           <img src="./src/images/arrows.png" alt="" class="center-self">
-
         </div>
 
         <div class="footer-buttons">
@@ -177,6 +174,26 @@
           </div>
 
           <img src="./src/images/buttons/snake-btn-play-again.png" alt="" class="button play-again" id="play-again">
+
+        </div>
+      </div>
+
+      <div class="screen" id="fail-screen">
+        <div class="center-y">
+          <img src="./src/images/exclamation.png" alt="" style="margin-bottom: 40px">
+
+          <div class="text" style="font-weight: bold;">YOUR SCORE:</div>
+          <div id="result-score" class="text" style="font-size: 40px">0</div>
+          <div class="text" style="margin-bottom: 30px">
+            You have not achieved
+            the minimum score
+            of 100 points.
+            To earn $5,
+            please try again!
+          </div>
+
+          <img src="./src/images/buttons/snake-btn-play-again.png" alt="" class="button play-again" id="play-again">
+          <img src="./src/images/buttons/snake-btn-exit.png" alt="" class="button exit" id="exit">
 
         </div>
       </div>
