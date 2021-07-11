@@ -65,7 +65,7 @@ const gameBoard = document.getElementById('game-board')
 const gameFooter = document.getElementById('game-footer')
 const gameBody = document.getElementById('game-body')
 export const gameBanner = document.querySelector('.banner-image')
-const gameContainer = document.getElementById('game-container')
+// const gameContainer = document.getElementById('game-container')
 const gameTitle = document.querySelector('.big-title')
 
 $('[data-next="#coming-soon"]').click(function () {
@@ -75,7 +75,7 @@ $('[data-next="#coming-soon"]').click(function () {
 
 export function nextScreen () {
   const id = $(this).data('next')
-  if ($(id).data('banner') == 'howtoplay') {
+  if ($(id).data('banner') === 'howtoplay') {
     updateAsset(gameBanner, howtoplayImgUrl)
   }
 
@@ -165,12 +165,8 @@ export function updateHud () {
   updateScore()
 }
 
-function updateTitle (imageUrl) {
-  $(gameTitle).attr('src', imageUrl).fadeIn()
-}
-
 export function updateAsset (element, imageUrl) {
-  if ($(element).attr('src') == imageUrl) return
+  if ($(element).attr('src') === imageUrl) return
 
   $(element).fadeOut(function () {
     $(this).attr('src', imageUrl).fadeIn()
@@ -182,27 +178,25 @@ function updateScore () {
 }
 
 export function redeemBoost (foodType) {
-  if (foodType.color == 'blue') {
+  if (foodType.color === 'blue') {
     state.SCORE += 20
     score.classList.add('blink')
     updateAsset(gameBanner, xlImgUrl)
     setTimeout(() => score.classList.remove('blink'), 500)
   }
 
-  if (foodType.color == 'green') {
+  if (foodType.color === 'green') {
     state.SNAKE_SPEED += 2
     updateAsset(gameBanner, xfImgUrl)
   }
 
-  if (foodType.color == 'red') {
+  if (foodType.color === 'red') {
     state.SCORE += 10
     score.classList.add('blink')
     updateAsset(gameBanner, xvImgUrl)
     setTimeout(() => score.classList.remove('blink'), 500)
   }
 }
-
-function updateBanner () {}
 
 function animateOnvisible (target, dep) {
   if ($(dep).is(':hidden')) return
@@ -219,7 +213,7 @@ export function changeFrame (str) {
 
   let headerUrl = frame[`header-${color}`]
   // Style for headless
-  if (type == 'headless') {
+  if (type === 'headless') {
     $('#timer, #score').hide()
     headerUrl = frame[`header-${color}-headless`]
   }
