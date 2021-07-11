@@ -1,3 +1,4 @@
+import $ from 'jquery'
 import state from './state'
 import holdonImgUrl from '../images/title/snake-title-holdon.png'
 import ohyesImgUrl from '../images/title/snake-title-oh-yes.png'

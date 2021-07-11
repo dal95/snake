@@ -1,3 +1,4 @@
+import $ from 'jquery'
 import state from './state'
 
 export const gameBoard = document.getElementById('game-board')
