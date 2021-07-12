@@ -2,6 +2,7 @@ import $ from 'jquery'
 import state from './state'
 import holdonImgUrl from '../images/title/snake-title-holdon.png'
 import ohyesImgUrl from '../images/title/snake-title-oh-yes.png'
+import ohnoImgUrl from '../images/title/snake-title-oh-no.png'
 import introImgUrl from '../images/title/snake-title-introducing.png'
 
 import loadingImgUrl from '../images/banner/LOADING-red.png'
@@ -9,6 +10,7 @@ import congratImgUrl from '../images/banner/CONGRATULATION.png'
 import NBTImgUrl from '../images/banner/NEXTBIGTHING.png'
 import howtoplayImgUrl from '../images/banner/HOWTOPLAY.png'
 import timeUpImgUrl from '../images/banner/TIMEUP.png'
+import tryagAinImgUrl from '../images/banner/TRYAGAIN.png'
 import xlImgUrl from '../images/banner/EXTRALONG.png'
 import xfImgUrl from '../images/banner/EXTRAFIRM.png'
 import xvImgUrl from '../images/banner/EXTRAVALUE.png'
@@ -43,7 +45,9 @@ export const preloadImages = [
   timeUpImgUrl,
   xlImgUrl,
   xvImgUrl,
-  xfImgUrl
+  xfImgUrl,
+  tryagAinImgUrl,
+  ohnoImgUrl
 ]
 
 export function preload (images) {
@@ -66,7 +70,7 @@ const gameFooter = document.getElementById('game-footer')
 const gameBody = document.getElementById('game-body')
 export const gameBanner = document.querySelector('.banner-image')
 // const gameContainer = document.getElementById('game-container')
-const gameTitle = document.querySelector('.big-title')
+export const gameTitle = document.querySelector('.big-title')
 
 $('[data-next="#coming-soon"]').click(function () {
   updateAsset(gameTitle, introImgUrl)
@@ -100,19 +104,21 @@ export function nextScreen () {
     })
 }
 
-export function loadingScreen () {
+export function showLoadingScreen () {
+  resetGame()
+  changeFrame('red-headless')
   updateAsset(gameTitle, holdonImgUrl)
   updateAsset(gameBanner, loadingImgUrl)
 
   $('#data-transmit').fadeIn()
   animate($('#data-transmit'), 59, 1000)
-  resetGame()
 
   // Simulate Submit the data
   setTimeout(() => showFinalScore(), 3000)
 }
 
 function showFinalScore () {
+  resetGame()
   $('.screen').fadeOut()
   changeFrame('blue-headless')
   updateAsset(gameTitle, ohyesImgUrl)
@@ -120,6 +126,15 @@ function showFinalScore () {
   $('#final-score').fadeIn()
   $('#result-score').text(state.SCORE || '0')
   animate($('#final-score'), 29, 1000)
+}
+
+export function showFailScreen () {
+  resetGame()
+  $('.screen').fadeOut()
+  updateAsset(gameTitle, ohnoImgUrl)
+  updateAsset(gameBanner, tryagAinImgUrl)
+  $('#fail-screen').fadeIn()
+  $('#result-score').text(state.SCORE || '0')
 }
 
 $('[data-next]').click(nextScreen)
@@ -130,24 +145,15 @@ function animate (parent, totalFrames, animationDuration = 1500) {
   let timeFromLastUpdate
   let frameNumber = 1
 
-  // 'step' function will be called each time browser rerender the content
-  // we achieve that by passing 'step' as a parameter to 'requestAnimationFrame' function
   function step (startTime) {
-    // 'startTime' is provided by requestAnimationName function, and we can consider it as current time
-    // first of all we calculate how much time has passed from the last time when frame was update
     if (!timeWhenLastUpdate) timeWhenLastUpdate = startTime
     timeFromLastUpdate = startTime - timeWhenLastUpdate
 
-    // then we check if it is time to update the frame
     if (timeFromLastUpdate > timePerFrame) {
-      // hide all frames
       parent.find('.anim-sequence img').css('opacity', 0)
-      // and show the required one
       parent.find(`.seq-${frameNumber}`).css('opacity', 1)
-      // reset the last update time
       timeWhenLastUpdate = startTime
 
-      // then increase the frame number or reset it if it is the last frame
       if (frameNumber >= totalFrames) {
         frameNumber = 1
       } else {
@@ -212,7 +218,6 @@ export function changeFrame (str) {
   const [color, type] = str.split('-')
 
   let headerUrl = frame[`header-${color}`]
-  // Style for headless
   if (type === 'headless') {
     $('#timer, #score').hide()
     headerUrl = frame[`header-${color}-headless`]

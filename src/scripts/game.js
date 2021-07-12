@@ -18,17 +18,19 @@ import {
   updateHud,
   updateAsset,
   changeFrame,
-  loadingScreen,
+  showLoadingScreen,
   gameBanner,
   preload,
-  preloadImages
+  preloadImages,
+  showFailScreen,
+  gameTitle
 } from './hud'
 
 imagesLoaded.makeJQueryPlugin($)
 
 let lastRenderTime = 0
 let gameOver = false
-let countdown = 60
+let countdown = 1
 
 export const gameBoard = document.getElementById('game-board')
 
@@ -52,7 +54,7 @@ $('#game-container')
     console.log('image is ' + result + ' for ' + image.img.src)
   })
 
-$('#play-again').click(function () {
+$('.play-again').click(function () {
   location.reload()
 })
 
@@ -64,15 +66,29 @@ function runCountdown () {
   }
 }
 
+function showGameOverScreen () {
+  changeFrame('red-headless')
+  $(gameTitle).fadeIn()
+  $(gameBanner).hide()
+}
+
 function main (currentTime) {
   if (gameOver) {
     if (countdown <= 0) {
+      showGameOverScreen()
       updateAsset(gameBanner, timeUpImgUrl)
     }
     countdown = 0
 
-    changeFrame('red-headless')
-    setTimeout(() => loadingScreen(), 1500)
+    if (state.SCORE <= 40) {
+      showGameOverScreen()
+      setTimeout(() => showFailScreen(), 1500)
+
+      return
+    }
+
+    showGameOverScreen()
+    setTimeout(() => showLoadingScreen(), 1500)
 
     return
   }

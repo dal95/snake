@@ -2,10 +2,9 @@ import { getInputDirection } from './input.js'
 
 let snakeBody = [
   { x: 11, y: 11, color: 'blue' }
-  // { x: 5, y: 1, color: 'blue' },
 ]
 
-const initial = [...snakeBody]
+// const initial = [...snakeBody]
 
 let newSegments = 0
 
