@@ -186,9 +186,9 @@
   align-items: center;
 
   @media only screen
-  and (max-width: 320px)
+  and (max-width: 360px)
   and (-webkit-min-device-pixel-ratio: 2) {
-    bottom: 2%;
+    bottom: 5%
   }
 }
 
