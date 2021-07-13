@@ -182,12 +182,8 @@
 
 #game-banner {
   position: absolute;
-  // top: 22vw;
-  // margin-top: 78px;
-  // margin-top: 62px;
-  margin-top: 67px;
   left: 50%;
-  /* width: 100%; */
+  bottom: 6%;
   transform: translateX(-50%);
   height: 62px;
   width: auto;
@@ -195,13 +191,9 @@
   align-items: center;
 
   @media only screen
-    and (min-width: 375px)
-    and (max-width: 667px) {
-      margin-top: 83px;
-  }
-
-  @media screen and (min-width: 375px) {
-    margin-top: 83px;
+  and (max-width: 320px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    bottom: 2%;
   }
 }
 
