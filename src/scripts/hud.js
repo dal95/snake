@@ -124,7 +124,7 @@ function showFinalScore () {
   updateAsset(gameTitle, ohyesImgUrl)
   updateAsset(gameBanner, congratImgUrl)
   $('#final-score').fadeIn()
-  $('#result-score').text(state.SCORE || '0')
+  $('.result-score').text(state.SCORE || '0')
   animate($('#final-score'), 29, 1000)
 }
 
@@ -133,8 +133,9 @@ export function showFailScreen () {
   $('.screen').fadeOut()
   updateAsset(gameTitle, ohnoImgUrl)
   updateAsset(gameBanner, tryagAinImgUrl)
-  $('#fail-screen').fadeIn()
-  $('#result-score').text(state.SCORE || '0')
+  $('#fail-screen').fadeIn(function () {
+    $('.result-score').text(state.SCORE || '0')
+  })
 }
 
 $('[data-next]').click(nextScreen)
