@@ -57,6 +57,10 @@ $('.play-again').click(function () {
   location.reload()
 })
 
+$('.exit').click(function () {
+  location.href = $(this).data('href')
+})
+
 const timer = document.querySelector('#timer')
 function runCountdown () {
   timer.textContent = state.COUNTDOWN
