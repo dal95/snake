@@ -8,6 +8,19 @@
 .center-self {
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 10px;
+}
+
+.screen .center-self img,
+.screen .center-y img:not(.button) {
+  max-width: 120px;
+  margin: auto;
+
+  @media only screen
+    and (min-width: 375px)
+    and (max-width: 667px) {
+      max-width: 180px;
+  }
 }
 
 .center {
@@ -38,9 +51,19 @@
   justify-content: space-between;
   padding: 0 20px;
   position: absolute;
-  top: 50px;
+  top: 40px;
   left: 0;
   width: 100%;
+
+  @media only screen
+    and (min-width: 375px)
+    and (max-width: 667px) {
+      top: 50px;
+  }
+
+  @media screen and (min-width: 375px) {
+    top: 50px;
+  }
 }
 
 .screen {
@@ -74,12 +97,21 @@
 
 .text {
   font-family: 'Lato', sans-serif;
-  font-size: 20px;
   font-weight: bold;
   line-height: 32px;
   color: #fff;
   text-align: center;
   padding: 0 20px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  line-height: 24px;
+
+  @media only screen
+    and (min-width: 375px)
+    and (max-width: 667px) {
+      font-size: 18px;
+      line-height: 30px;
+  }
 
   &.small {
     font-size: 16px;
@@ -97,11 +129,19 @@
 }
 
 .anim-sequence {
-  height: 140px;
+  // height: 140px;
+  height: 60px;
+
+  @media only screen
+    and (min-width: 375px)
+    and (max-width: 667px) {
+      height: 100px;
+  }
 }
 
 .anim-sequence img {
-  width: 300px;
+  // width: 300px;
+  max-width: 60% !important;
 
   // we stack all image containers one above another
   position: absolute;
@@ -110,6 +150,12 @@
   // and place them in the middle of the screen
   left: 50%;
   transform: translateX(-50%);
+
+  @media only screen
+    and (min-width: 375px)
+    and (max-width: 667px) {
+    max-width: 80% !important;
+  }
 }
 
 .blink {
@@ -137,7 +183,9 @@
 #game-banner {
   position: absolute;
   // top: 22vw;
-  margin-top: 82px;
+  // margin-top: 78px;
+  // margin-top: 62px;
+  margin-top: 67px;
   left: 50%;
   /* width: 100%; */
   transform: translateX(-50%);
@@ -145,6 +193,16 @@
   width: auto;
   display: flex;
   align-items: center;
+
+  @media only screen
+    and (min-width: 375px)
+    and (max-width: 667px) {
+      margin-top: 83px;
+  }
+
+  @media screen and (min-width: 375px) {
+    margin-top: 83px;
+  }
 }
 
 .header-bg {
@@ -161,8 +219,11 @@
 }
 
 #result-score {
-  margin: 20px 0;
+  // margin: 20px 0;
+  margin: 10px 0;
   font-weight: bold;
+  font-size: 25px;
+  // 30px
 }
 
 .preloaded {
@@ -170,4 +231,8 @@
   width: 1px;
   position: absolute;
   z-index: -999
+}
+
+.green {
+  text-shadow: 0 0 24px #72da03, 0 0 20px #72da03, 0 0 24px #72da03,
 }

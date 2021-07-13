@@ -30,7 +30,6 @@ imagesLoaded.makeJQueryPlugin($)
 
 let lastRenderTime = 0
 let gameOver = false
-let countdown = 1
 
 export const gameBoard = document.getElementById('game-board')
 
@@ -60,8 +59,8 @@ $('.play-again').click(function () {
 
 const timer = document.querySelector('#timer')
 function runCountdown () {
-  timer.textContent = countdown
-  if (countdown-- > 0) {
+  timer.textContent = state.COUNTDOWN
+  if (state.COUNTDOWN-- > 0) {
     setTimeout(runCountdown, 1000)
   }
 }
@@ -74,13 +73,13 @@ function showGameOverScreen () {
 
 function main (currentTime) {
   if (gameOver) {
-    if (countdown <= 0) {
+    if (state.COUNTDOWN <= 0) {
       showGameOverScreen()
       updateAsset(gameBanner, timeUpImgUrl)
     }
-    countdown = 0
+    state.COUNTDOWN = 0
 
-    if (state.SCORE <= 40) {
+    if (state.SCORE <= state.MIN_SCORE) {
       showGameOverScreen()
       setTimeout(() => showFailScreen(), 1500)
 
@@ -125,5 +124,5 @@ function draw () {
 
 function checkDeath () {
   gameOver =
-    outsideGrid(getSnakeHead()) || snakeIntersection() || countdown < 0
+    outsideGrid(getSnakeHead()) || snakeIntersection() || state.COUNTDOWN < 0
 }

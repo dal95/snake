@@ -69,8 +69,13 @@
         </div>
 
         <div class="footer-buttons">
-          <img src="./src/images/buttons/SKIP.png" alt="" class="button skip" data-next="#play-screen">
-          <img src="./src/images/buttons/NEXT.png" alt="" class="button next" data-next="#tutorial-score">
+          <div>
+            <img src="./src/images/buttons/SKIP.png" alt="" class="button skip" data-next="#play-screen">
+          </div>
+
+          <div>
+            <img src="./src/images/buttons/NEXT.png" alt="" class="button next" data-next="#tutorial-score">
+          </div>
         </div>
       </div>
 
@@ -147,50 +152,48 @@
         <div class="center-y">
           <div class="anim-sequence trophy-sequence"></div>
           <div class="text" style="font-weight: bold;">YOUR SCORE:</div>
-          <div id="result-score" class="text" style="font-size: 40px">0</div>
-          <div class="text" style="margin-bottom: 30px">
+          <div id="result-score" class="text">0</div>
+          <div class="text">
             <div>Congratulations!</div>
-            Click NEXT to learn
-            more about:
-
-            <div>
-              the NEXT BIG THING!
-            </div>
+            Stay tuned on 26 July for the NEXT new product
+            launch on PMI&U - : <div class="green">COMING SOON</div>
           </div>
 
-          <img src="./src/images/buttons/snake-btn-next.png" alt="" class="button next" data-next="#coming-soon">
+          <img src="./src/images/buttons/snake-btn-play-again.png" alt="" class="button play-again" id="play-again">
+          <img src="./src/images/buttons/snake-btn-exit.png" alt="" class="button exit" id="exit">
         </div>
       </div>
 
+      <!-- Disabled per change https://docs.google.com/presentation/d/1rwhVWE6xkg7JOmLS9Pv4g5N95HB2phIz4XfZoSku6bs/edit#slide=id.p4 -->
       <div class="screen tutorial" id="coming-soon">
         <div class="center-y">
-          <img src="./src/images/COMINGSOON.png" alt="" style="margin-bottom: 40px">
-          <div class="text" style="margin-bottom: 30px; font-size: 20px;">
+          <img src="./src/images/COMINGSOON.png" alt="">
+          <div class="text">
             Stay tuned next week
             to find out about the
             NEXT new product
             launch on PMI&U!
           </div>
 
-          <img src="./src/images/buttons/snake-btn-play-again.png" alt="" class="button play-again" id="play-again">
-          <img src="./src/images/buttons/snake-btn-exit.png" alt="" class="button exit" id="exit">
+          <img src="./src/images/buttons/snake-btn-play-again.png" alt="" class="button play-again center-slef" id="play-again">
+          <img src="./src/images/buttons/snake-btn-exit.png" alt="" class="button exit center-self" id="exit">
 
         </div>
       </div>
 
       <div class="screen" id="fail-screen">
         <div class="center-y">
-          <img src="./src/images/exclamation.png" alt="" class="center-self" style="margin-bottom: 40px">
+          <img src="./src/images/exclamation.png" alt="" class="center-self">
 
           <div class="text" style="font-weight: bold;">YOUR SCORE:</div>
-          <div id="result-score" class="text" style="font-size: 40px">0</div>
-          <div class="text" style="margin-bottom: 30px">
+          <div id="result-score" class="text">0</div>
+          <div class="text">
             You have not completed the game successfully.
             Please try again!
           </div>
 
-          <img src="./src/images/buttons/snake-btn-play-again.png" alt="" class="button play-again" id="play-again">
-          <img src="./src/images/buttons/snake-btn-exit.png" alt="" class="button exit" id="exit">
+          <img src="./src/images/buttons/snake-btn-play-again.png" alt="" class="button play-again center-self" id="play-again">
+          <img src="./src/images/buttons/snake-btn-exit.png" alt="" class="button exit center-self" id="exit">
 
         </div>
       </div>

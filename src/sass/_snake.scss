@@ -15,7 +15,8 @@ img {
   background: url('../images/background.png');
   background-repeat: no-repeat;
   background-size: cover;
-  max-width: 375px; // Iphone x
+  // max-width: 375px; // Iphone x
+  max-height: 812px; // Iphone x
   // max-width: 600px;
   height: calc(100vh - 40px);
   margin: auto;
@@ -47,7 +48,8 @@ img {
   // flex: 1;
   text-align: center;
   color: #fff;
-  font-size: 40px;
+  // font-size: 40px;
+  font-size: 30px;
   font-family: 'Death Star';
   text-shadow: 0 0 24px #72da03, 0 0 20px #72da03, 0 0 24px #72da03,
     0 0 24px #72da03;
