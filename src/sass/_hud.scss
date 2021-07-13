@@ -178,7 +178,7 @@
 #game-banner {
   position: absolute;
   left: 50%;
-  bottom: 7%;
+  bottom: 6.8%;
   transform: translateX(-50%);
   height: 62px;
   width: auto;
@@ -189,6 +189,12 @@
   and (max-width: 360px)
   and (-webkit-min-device-pixel-ratio: 2) {
     bottom: 5%
+  }
+
+  @media only screen
+  and (max-width: 320px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    bottom: 2%
   }
 }
 
