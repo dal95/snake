@@ -5,7 +5,7 @@ import ohyesImgUrl from '../images/title/snake-title-oh-yes.png'
 import ohnoImgUrl from '../images/title/snake-title-oh-no.png'
 import introImgUrl from '../images/title/snake-title-introducing.png'
 
-import loadingImgUrl from '../images/banner/LOADING-red.png'
+import loadingImgUrl from '../images/banner/LOADING.png'
 import congratImgUrl from '../images/banner/CONGRATULATION.png'
 import NBTImgUrl from '../images/banner/NEXTBIGTHING.png'
 import howtoplayImgUrl from '../images/banner/HOWTOPLAY.png'
