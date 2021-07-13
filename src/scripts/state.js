@@ -3,7 +3,7 @@ const state = {
   SCORE: 0, // 0
   CELL_DIMENSION: 10,
   COUNTDOWN: 60, // 60,
-  MIN_SCORE: 0
+  MIN_SCORE: 40
 }
 
 export default state
