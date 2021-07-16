@@ -1,11 +1,6 @@
-* {
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 @import './normalize';
 @import './variables';
 @import './fonts';
+@import './base';
 @import './snake';
 @import './hud';

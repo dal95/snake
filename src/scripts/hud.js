@@ -1,5 +1,6 @@
 import $ from 'jquery'
 import state from './state'
+
 import holdonImgUrl from '../images/title/snake-title-holdon.png'
 import ohyesImgUrl from '../images/title/snake-title-oh-yes.png'
 import ohnoImgUrl from '../images/title/snake-title-oh-no.png'
@@ -133,9 +134,7 @@ export function showFailScreen () {
   $('.screen').fadeOut()
   updateAsset(gameTitle, ohnoImgUrl)
   updateAsset(gameBanner, tryagAinImgUrl)
-  $('#fail-screen').fadeIn(function () {
-    $('.result-score').text(state.SCORE || '0')
-  })
+  $('#fail-screen').fadeIn()
 }
 
 $('[data-next]').click(nextScreen)

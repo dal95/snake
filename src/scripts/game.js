@@ -36,8 +36,8 @@ export const gameBoard = document.getElementById('game-board')
 preload(preloadImages)
 
 $('#game-container')
-  .imagesLoaded()
-  .always(function () {
+  .imagesLoaded({ background: true })
+  .done(function () {
     $('#overlay').fadeOut()
     init()
 
@@ -73,6 +73,7 @@ function showGameOverScreen () {
   changeFrame('red-headless')
   $(gameTitle).fadeIn()
   $(gameBanner).hide()
+  $('.result-score').text(state.SCORE || '0')
 }
 
 function main (currentTime) {
